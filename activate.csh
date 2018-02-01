@@ -1,36 +1,30 @@
-# This file must be used with "source bin/activate.csh" *from csh*.
-# You cannot run it directly.
-# Created by Davide Di Blasi <davidedb@gmail.com>.
-
-alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PATH" && unset _OLD_VIRTUAL_PATH; rehash; test $?_OLD_VIRTUAL_PROMPT != 0 && set prompt="$_OLD_VIRTUAL_PROMPT" && unset _OLD_VIRTUAL_PROMPT; unsetenv VIRTUAL_ENV; test "\!:*" != "nondestructive" && unalias deactivate && unalias pydoc'
-
-# Unset irrelevant variables.
-deactivate nondestructive
-
-setenv VIRTUAL_ENV "/home/motasem/PycharmProjects/untitled/venv"
-
-set _OLD_VIRTUAL_PATH="$PATH"
-setenv PATH "$VIRTUAL_ENV/bin:$PATH"
-
-
-
-if ("" != "") then
-    set env_name = ""
-else
-    set env_name = `basename "$VIRTUAL_ENV"`
-endif
-
-# Could be in a non-interactive environment,
-# in which case, $prompt is undefined and we wouldn't
-# care about the prompt anyway.
-if ( $?prompt ) then
-    set _OLD_VIRTUAL_PROMPT="$prompt"
-    set prompt = "[$env_name] $prompt"
-endif
-
-unset env_name
-
-alias pydoc python -m pydoc
-
-rehash
+"""• ‘NO’ (means NW in Portuguese) if the residence is in Northwestern Nlogonia;
+• ‘NE’ if the residence is in Northeastern Nlogonia;
+• ‘SE’ if the residence is in Southeastern Nlogonia;
+• ‘SO’ (means SW in Portuguese) if the residence is in Southwestern Nlogonia."""
+x=[]
+n=0
+while True :
+    q=int(input())
+    if (q != 0):
+        a, s = map(int, input().split())
+        for z in range(1,q+1):
+            w,e=map(int,input().split())
+            if (w>a and e>s):
+                x.append('NE')
+            elif (w<a and e>s):
+                x.append('NO')
+            elif (w>a and e<s):
+                x.append('SE')
+            elif (w<a and e<s):
+                x.append('SO')
+            else :
+                x.append('divisa')
+            n +=1
+    else :
+        break
+v=0
+while v<n :
+    print (x[v])
+    v +=1
 
