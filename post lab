@@ -1,0 +1,74 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct studentInfo {
+    string firstName;
+    string lastNmae;
+    string id;
+};
+
+struct courseGrade {
+    int total;
+    int Final;
+    int sum;
+};
+
+struct student {
+    studentInfo Info;
+    courseGrade grade;
+    bool status;
+};
+
+void inputData(student &s2) {
+    cout << "Please, enter the following data:" << '\n';
+    cout << "First name :";
+    cin >> s2.Info.firstName;
+    cout << "Last name :";
+    cin >> s2.Info.lastNmae;
+    cout << "ID :";
+    cin >> s2.Info.id;
+    cout << "Total of 60 for the course :";
+    cin >> s2.grade.total;
+    cout << "Final Grade :";
+    cin >> s2.grade.Final;
+}
+
+void computeSum(student s1[]) {
+    for (int q = 0; q < 2; q++) {
+        s1[q].grade.sum = s1[q].grade.Final + s1[q].grade.total;
+    }
+}
+
+bool setStatus(student s1[]) {
+    for (int q = 0; q < 2; q++) {
+        if (s1[q].grade.sum >= 50)
+            s1[q].status = true;
+        else
+            s1[q].status = false;
+    }
+    return s1;
+}
+
+void print(student s1[]) {
+    cout << "Student Name" << '\t' << "ID" << '\t' << '\t' << '\t' << "Grade" << '\t' << '\t' << "status" << '\n';
+    cout << "************" << '\t' << "**********" << '\t' << '\t' << "*********" << '\t' << "**********" << '\n';
+    for (int q = 0; q < 2; q++) {
+        if (s1[q].status)
+            cout << s1[q].Info.firstName << " " << s1[q].Info.lastNmae << '\t' << s1[q].Info.id << '\t' << '\t' << s1[q].grade.sum << '\t' << '\t' << "pass" << '\n';
+        else
+            cout << s1[q].Info.firstName << " " << s1[q].Info.lastNmae << '\t' << s1[q].Info.id << '\t' << '\t' << s1[q].grade.sum << '\t' << '\t' << "Fail" << '\n';
+
+    }
+}
+
+int main() {
+    student s1[5];
+    for (int q = 0; q < 2; q++) {
+        inputData(s1[q]);
+    }
+    computeSum(s1);
+    setStatus(s1);
+    print(s1);
+    return 0;
+}
