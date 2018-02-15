@@ -35,13 +35,13 @@ void inputData(student &s2) {
 }
 
 void computeSum(student s1[]) {
-    for (int q = 0; q < 2; q++) {
+    for (int q = 0; q < 5; q++) {
         s1[q].grade.sum = s1[q].grade.Final + s1[q].grade.total;
     }
 }
 
 bool setStatus(student s1[]) {
-    for (int q = 0; q < 2; q++) {
+    for (int q = 0; q < 5; q++) {
         if (s1[q].grade.sum >= 50)
             s1[q].status = true;
         else
@@ -53,7 +53,7 @@ bool setStatus(student s1[]) {
 void print(student s1[]) {
     cout << "Student Name" << '\t' << "ID" << '\t' << '\t' << '\t' << "Grade" << '\t' << '\t' << "status" << '\n';
     cout << "************" << '\t' << "**********" << '\t' << '\t' << "*********" << '\t' << "**********" << '\n';
-    for (int q = 0; q < 2; q++) {
+    for (int q = 0; q < 5; q++) {
         if (s1[q].status)
             cout << s1[q].Info.firstName << " " << s1[q].Info.lastNmae << '\t' << s1[q].Info.id << '\t' << '\t' << s1[q].grade.sum << '\t' << '\t' << "pass" << '\n';
         else
@@ -64,7 +64,7 @@ void print(student s1[]) {
 
 int main() {
     student s1[5];
-    for (int q = 0; q < 2; q++) {
+    for (int q = 0; q < 5; q++) {
         inputData(s1[q]);
     }
     computeSum(s1);
