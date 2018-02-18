@@ -1,0 +1,97 @@
+#include <iostream>
+#include<string>
+using namespace std;
+class hospital {
+private :
+	string name ,address;
+	int numOfBeds,numOfStaff;
+public :
+	void setAllInfo(string, string, int,int );
+	void  getAllInfo(string&,string&, int&,int&);
+	void getName(string&);
+	string  getAddress();
+	void print ( );
+	bool  compare(hospital & );
+	void addStaff( int);
+};
+void  hospital::setAllInfo(string a,string s,int d,int f){
+	name =a;
+	address =s ;
+	numOfBeds =d;
+	numOfStaff = f;
+}
+
+void hospital::getAllInfo(string &a,string &s,int &d,int & f){
+a = name ;
+s = address ;
+d = numOfBeds;
+f = numOfStaff;
+}
+
+void hospital::getName(string & z){
+	z=name ;
+}
+
+string hospital::getAddress(){
+	return address;
+}
+
+bool hospital::compare(hospital & b){
+	if (name==b.name && address==b.address && numOfBeds == b.numOfBeds && numOfStaff==b.numOfStaff)
+		return true;
+	return false ;
+}
+
+void hospital::print(){
+cout << "hospital information"<<endl;
+cout<< "name :"<< name<<endl;
+cout<< "address : "<< address<<endl;
+cout << "number of beds :"<< numOfBeds<<endl;
+cout<< "number of staff : "<< numOfStaff<<endl; 
+}
+
+void hospital::addStaff(int q){
+numOfStaff += q;
+}
+void hospital::getName(string &a)
+{
+	a=name;
+}
+
+int main() {
+hospital h1 ,h2;
+string a,s;
+int z,x;
+cout << "Enter hospital info :"<<endl ;
+cout << "name : ";
+getline(cin,a);
+cout << "address :";
+getline(cin,s);
+cout<< "number of beds :";
+cin >> z;
+cout << "number of staff :";
+cin >> x;
+h1.setAllInfo(a,s,z,x);
+a= "ABC Hospital";
+s = "Irbid-ABC-Address";
+z = 200 ;
+x = 125;
+string e,r;
+
+h2.setAllInfo(a,s,z,x);
+h2.getName(e);
+r=h2.getAddress();
+cout <<endl<<"nmae of h2 is :"<<e<<" and the address is :"<<r<<endl<<endl;
+h1.addStaff(10);
+h1.print();
+cout<<endl<< "hospital2 information using getALL function :"<<endl;
+cout << "name :"<< a<<endl;
+cout << "address  :"<< s<<endl;
+cout << "beds :"<< z<<endl;
+cout << "staff :"<< x<<endl<<endl;
+if (h1.compare(h2))
+	cout<<"Equls"<<endl;
+else 
+	cout <<"not Equls"<<endl;
+return 0;
+}
