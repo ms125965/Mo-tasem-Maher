@@ -1,6 +1,98 @@
-#include <iostream>#include <string>using namespace std ;
-class medicine {private :string name;string categry ;double price ;int expeiry_year;public :void setAllInfo(string ,string ,double ,int);void getAllInfo(string &,string & ,double &,int &);void getName(string &);string getCategory();void print ();bool isExpired();bool compare (medicine &);void increasePrice();};void medicine::setAllInfo(string a,string s,double d,intf){name = a;category =s  ;price = d;expeity_yaer = f;}void getAllInfo(string &a,string & s,double &d,int &f){a = name ;s = category;d = price ;f = expeity_yaer ;}void getName(string &z){z = name ;}string getCategory(){return getCategory;}bool isExpired(){return (expeity_yaer <  2017);} bool compare (medicine &x){return (name == x.name && category == x.category && price == x.price && expeity_yaer == x.expeity_yaer); }void print (){cout << "medicine information :"<<endl;cout << "name : "<< name <<endl;cout << "category : "<<"category <<endl;cout << "price : " << "expiry year :" << expeity_yaer << endl ;}
-int main (){medicine m1 ,m2;string q,w;double e;int r;cout << "Enter medicine info :" <<endl;cout<< "name :";cin >> q;cout<< "category :";cin>>w;cout<< "price :";cin >> e;cout<< "expiry year :" ;cin >>  r;m1.setAllInfo(q,w,e,r);m2.setAllInfo(“doxycycline”, “Antibiotics”, 7.25, 2016);string q,w;m2.getName(q);w = m2.getCategory();cout <<endl<< "name of m2 is : "<<q <<" and the category is :" << w<<endl<<endl;m1.print();cout<< endl ;string q,w;double e;int r;m2.getAllInfo(q,w,e,r);cout << "madicine2 information using getALL function :"<<endl ;cout << "name : " <<q<<endl;cout << "category : " << w <<endl;cout << "peice : " << e << endl ;cout << "exp year : " r << endl << endl ;
-if (m1.compare (m2))cout<< "equals"<<endl;else cout<< "not equals"<<endl ;
-if (isExpired)cout << "expired"<<endl ;else cout<< "not expired "<<endl ;   }
+#include <iostream>
+#include <string>
+using namespace std ;
+
+class medicine {
+private :
+	string name;
+	string category ;
+	double price ;
+	int expeity_yaer;
+public :
+	void setAllInfo(string ,string ,double ,int);
+	void getAllInfo(string &,string & ,double &,int &);
+	void getName(string &);string getCategory();
+	void print ();
+	bool isExpired();
+	bool compare (medicine &);
+	void increasePrice();
+};
+void medicine :: increasePrice(){
+	price=price*.10+price;
+}
+void medicine::setAllInfo(string a,string s,double d,int f){
+	name = a;
+	category =s;
+	price = d;
+	expeity_yaer = f;
+}
+void medicine::getAllInfo(string &a,string & s,double &d,int &f){
+	a = name ;
+	s = category;
+	d = price ;
+	f = expeity_yaer ;
+}
+void medicine::getName(string &z){
+	z = name ;
+}
+string medicine::getCategory(){
+	return category;
+}
+bool medicine::isExpired(){
+	return (expeity_yaer <2017);
+}
+bool medicine::compare (medicine &x){
+	return (name == x.name && category == x.category && price == x.price && expeity_yaer == x.expeity_yaer);
+}
+void medicine::print (){
+	cout << "medicine information :"<<endl;
+	cout << "name : "<< name <<endl;
+	cout << "category : "<<category <<endl;
+	cout << "price : "<<price<<endl; 
+	cout<< "expiry year :" << expeity_yaer << endl ;
+}
+int main (){
+	medicine m1 ;
+	medicine m2;
+	string u,i;
+	double p;
+	int v;
+	cout << "Enter medicine info :" <<endl;
+	cout<< "name :";
+	cin >> u;
+	cout<< "category :";
+	cin>>i;
+	cout<< "price :";
+	cin >> p;
+	cout<< "expiry year :" ;
+	cin >>v ;
+	m1.setAllInfo(u,i,p,v);
+	m2.setAllInfo("doxycycline" , "Antibiotics", 7.25, 2016);
+	string n,b;
+	m1.increasePrice();
+	m2.getName(n);
+	b = m2.getCategory();
+	cout <<endl<< "name of m2 is : "<<n<<" and the category is :" << b<<endl<<endl;
+	m1.print();
+	cout<< endl ;
+	string q,w;
+	double e;
+	int r;
+	m2.getAllInfo(q,w,e,r);
+	cout << "madicine2 information using getALL function :"<<endl ;
+	cout << "name : " <<q<<endl;
+	cout << "category : " << w <<endl;
+	cout << "peice : " << r << endl ;
+	cout << "exp year : "<< e << endl << endl ;
+	
+if (m1.compare (m2))
+	cout<< "equals"<<endl;
+else
+	cout<< "not equals"<<endl;
+if (m1.isExpired())
+	cout << "expired"<<endl ;
+else
+	cout<< "not expired "<<endl ;
+return 0;
+}
 
