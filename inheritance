@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string >
+#include <conio.h>
+
+using namespace std;
+
+class person {
+	
+protected :
+	string name ;
+	string gender ;
+	int age ;
+	person (string a,string s,int d ){
+		name =a;
+		gender = s;
+		age =d;
+		cout<<"inheritance"<<'\n';
+	}
+};
+
+class student : public person{
+private:
+	int  grade;
+	int id ;
+public:
+	student (string a,string s,int d,int f,int g):person(a,s,f){
+	grade = d ;
+	id = g ;
+	cout<<"inheritance2"<<'\n';
+	
+	}
+	void print(){
+	cout << "name :"<< name <<endl;	
+	cout << "gender :"<<gender<<endl;
+	cout << "age :"<<age <<endl;
+	cout << "grade :"<<grade<<endl ;
+    cout << "id :"<<id <<endl ;
+	}
+};
+
+int main()
+{
+	student m1("motasem","mal",77,18,12345678);
+	m1.print();
+    return 0;
+}
