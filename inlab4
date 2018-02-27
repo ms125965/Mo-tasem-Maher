@@ -1,0 +1,115 @@
+#include <iostream>
+#include <string>
+using namespace std ;
+
+struct date {
+    int day ;
+    int month;
+    int year ;
+    }; 
+struct roomInfo {
+    int bedNum;
+    int num;
+    };
+
+class patient {
+private :
+    string id;
+    int age ;
+    roomInfo rInfo;
+    date admDate ;
+public:
+    patient();
+    patient(string ,int ,int ,int ,date );
+    int getroomNum()const;
+    void setAll( string,int ,int, int,date);
+    date getAdmissionDate ()const ;
+    void print ()const ;
+    bool compare (const patient & )const;
+    ~patient(){
+        cout << "GOOD BYE patient :" <<id <<endl; 
+        }
+    
+    };
+
+patient::patient (){
+     id="";
+     age =0;
+     rInfo.bedNum=0;
+     rInfo.num=0;
+     admDate.day = 0 ;
+     admDate.month = 0 ;
+     admDate.year = 0 ;
+    }
+patient::patient(string a,int s ,int d, int f ,date g ){
+    id = a;
+    age = s;
+    rInfo.bedNum=d;
+    rInfo.num = f;
+    admDate = g;
+    }
+void patient::setAll( string a,int s ,int d, int f ,date g){
+    id = a;
+    age = s;
+    rInfo.bedNum=d;
+    rInfo.num = f;
+    admDate = g;
+    }
+int patient:: getroomNum()const{
+    return rInfo.num;
+    }
+date patient:: getAdmissionDate ()const{
+    return admDate;
+    } 
+void patient::print()const {
+    cout<< "patient Id : "<<id<<endl;
+    cout<< "patient age :"<<age <<endl;
+    cout<< "room num : "<<rInfo.bedNum<<endl;
+    cout<< "bed num : "<< rInfo.num<<endl;
+    cout << "admission date d m y :"<<admDate.day<<" "<<admDate.month<<" "<<admDate.year<<endl;
+    }
+bool  patient::compare (const patient &q )const{
+    return (rInfo.num==q.rInfo.num &&admDate.day==q.admDate.day &&admDate.month==q.admDate.month&&admDate.year==q.admDate.year );
+    }
+bool compare(const patient &w,const patient &e){
+   return ( w.compare (e));
+    }
+
+int main (){
+    patient p1;
+    date d1,d2 ;
+    d1.day = 10;
+    d1.month = 7;
+    d1.year = 2016;
+    patient p2("p-123", 25,2,101,d1);
+    cout << "enter patient Info  "<<endl;
+    string a;
+    int s,d,f;
+    cout << "Id: ";
+    cin>>a;
+    cout << "age: ";
+    cin>>s;
+    cout << "bed num : ";
+    cin>>d;
+    cout << "room num : ";
+    cin>>f;
+    cout << "admission date d m y :";
+    cin >>d2.day>>d2.month>>d2.year;
+    p1.setAll(a,s,d,f,d2);
+    cout << endl;
+    p1.print();
+    cout << endl;
+    if (p1.compare(p2)){
+        cout << "member function are equals "<<endl; 
+        }
+    else 
+        cout<<"member function not equals "<<endl;
+   bool c=compare(p1,p2);
+   if (c){
+        cout << "member function are equals"<<endl; 
+        }
+    else 
+        cout<<"member function not equals"<<endl;
+   cout <<endl;
+    return 0;
+    }
