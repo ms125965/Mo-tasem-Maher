@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct ownerInfo{
+string name;
+int age;
+int ssn;
+};
+class pharmacy{
+private :
+  string name;
+  string location ;
+  oInfo ownerInfo ;
+public :
+pharmacy ();
+pharmacy (string ,string ,string ,int ,int );
+void setAll (string ,strnig ,string ,int ,int );
+string getOwnerName()const ;
+int getSSN ()const ;
+string getpharmacyname()const;
+void print ()const ;
+bool compare (const pharmacy &)const;
+~pharmacy();
+};
+
+pharmacy::pharmacy(){
+oInfo.name="";
+oInfo.age = 0;
+oInfo.ssn= 0;
+name = "";
+location = ""; 
+}
+pharmacy::pharmacy(string a,string s,string d,int f,int g){
+oInfo.name=a;
+oInfo.age = f;
+oInfo.ssn= g;
+name = s;
+location = d; 
+}
+void pharmacy::setAll(string a,string s,string d,int f,int g){
+oInfo.name=a;
+oInfo.age = f;
+oInfo.ssn= g;
+name = s;
+location = d; 
+}
+string pharamcy::getOwnerName(){
+return oInfo.name;
+}
+int pharamcy::getSSN (){
+return ssn;
+}
+string pharamcy::getpharamcyName(){
+return name;
+}
+
+
+
+
+
+
+
+
+
+
