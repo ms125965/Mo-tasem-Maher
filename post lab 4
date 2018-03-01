@@ -11,25 +11,25 @@ class pharmacy{
 private :
   string name;
   string location ;
-  oInfo ownerInfo ;
+  ownerInfo oInfo  ;
 public :
 pharmacy ();
 pharmacy (string ,string ,string ,int ,int );
-void setAll (string ,strnig ,string ,int ,int );
+void setAll (string ,string ,string ,int ,int );
 string getOwnerName()const ;
 int getSSN ()const ;
 string getpharmacyname()const;
 void print ()const ;
 bool compare (const pharmacy &)const;
-~pharmacy();
+~pharmacy(){cout << "GOOD BYE"<<endl;}
 };
 
 pharmacy::pharmacy(){
-oInfo.name="";
+oInfo.name=" ";
 oInfo.age = 0;
 oInfo.ssn= 0;
-name = "";
-location = ""; 
+name = " ";
+location = " "; 
 }
 pharmacy::pharmacy(string a,string s,string d,int f,int g){
 oInfo.name=a;
@@ -39,27 +39,85 @@ name = s;
 location = d; 
 }
 void pharmacy::setAll(string a,string s,string d,int f,int g){
-oInfo.name=a;
+oInfo.name=d;
 oInfo.age = f;
 oInfo.ssn= g;
-name = s;
-location = d; 
+name = a;
+location = s; 
 }
-string pharamcy::getOwnerName(){
-return oInfo.name;
+int pharmacy::getSSN ()const{
+return oInfo.ssn;
 }
-int pharamcy::getSSN (){
-return ssn;
-}
-string pharamcy::getpharamcyName(){
+string pharmacy::getOwnerName()const{
 return name;
 }
-
-
-
-
-
-
+string pharmacy::getpharmacyname()const{
+	return name;
+}
+void pharmacy::print ()const{
+	cout << "pharmacy name : "<<name<<endl;
+	cout << "pharmacy location : "<<location<<endl;
+	cout << "owner name : "<<oInfo.name<<endl;
+	cout << "owner aga : "<< oInfo.age<<endl;
+}
+void printPhar (pharmacy b[],int ssn ){
+	string s;
+	int w;
+	for (int q =0 ;q< 3;q++){
+		w=b[q].getSSN();
+		s=b[q].getpharmacyname();
+	if (w==ssn){
+		cout << s<<endl;
+	}
+	}
+}
+bool pharmacy::compare (const pharmacy &w)const{
+	return (name==w.name && location==w.location && oInfo.name==w.oInfo.name && oInfo.age==w.oInfo.age && oInfo.ssn==w.oInfo.ssn);
+}
+bool compare1 (const pharmacy &q,const pharmacy &w){
+	string a,s;
+	int f,g;
+	a=q.getOwnerName();
+	s=w.getOwnerName();
+	f=q.getSSN();
+	g=w.getSSN();
+	return (a==s && f==g);
+}
+int main (){
+	pharmacy plist[3];
+	string a,s,d;
+	int f,g;
+	cout << "reading pharmacies informatoin :"<<endl;
+	for (int q =0; q< 3 ;q++){
+	cout << "Enter the name of pharmacy number :"<<q+1<<endl;
+	cin>>a;
+	cout << "Enter the loaction of pharmacy nunbuer :"<<q+1<<endl;
+	cin >> s;
+	cout << "Enter the owner name of pharmacy number : "<<q+1<<endl;
+	cin >> d;
+	cout << "Enter owner age if pharmacy number :"<<q+1<<endl ;
+	cin >> f;
+	cout << "Enter owner SSN of pharmacy number : "<< 1+q<<endl ;
+	cin >> g;
+	plist[q].setAll(a,s,d,f,g);
+	cout << endl;
+	}
+	pharmacy p1( "pharmacy-abc", "IRBID","ahmad",52,12345);
+	plist[1].print();
+	cout << endl;
+	if (p1.compare(plist[0]))
+		cout << "member function equals"<<endl;
+	else 
+		cout << "member function not equals"<<endl;
+	cout << endl;
+	if (compare1(p1,plist[2]))
+		cout << "none member function equals"<<endl;
+	else 
+		cout << "none member function not equals"<<endl;
+	cout << endl;
+	printPhar(plist,123);
+return 0;
+}
 
 
 
