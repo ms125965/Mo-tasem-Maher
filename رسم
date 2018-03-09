@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std ;
+int main() {
+  int a;
+  cin >>a;
+  int w = a-1; 
+  int r = a-1;
+  int t = a-1;
+  for (int s = 1; s <=a;s++){
+    for (int q =w--;q>0;q--){
+      cout<<" ";  
+    }
+    for (int q =0 ;q<=s;q++){
+        cout<<"*";
+      }
+	for (int q =0 ;q<s-1;q++){
+        cout<<"*";
+      }
+      cout << endl;
+  }
+   for (int s = 1; s <a;s++){
+     for (int q =0;q<s;q++){
+       cout<<" ";
+	 }
+	 for (int q =r-- ;q > 0;q--){
+        cout<<"*";
+      }
+	for (int q =t-- ;q > 0;q--){
+        cout<<"*";
+      }
+	cout << endl;
+	    
+    }
+      
+  }
