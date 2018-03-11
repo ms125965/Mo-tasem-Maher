@@ -1,0 +1,127 @@
+#include <iostream> 
+#include <string>
+
+using namespace std ;
+//------------header1-----------------------------
+class person {
+private :
+	string name ;
+	string gender ;
+	int age;
+public:
+	person (string ,string ,int);
+	void SetAll (string ,string ,int );
+	int getAge();
+	void print ();
+	~person();
+};
+//----------------------------------------------
+
+//------------header-----------------------------
+class patient:public person {
+private :
+	string sickness ;
+	string admitionDate;
+	string serviceLevel;
+public:
+	patient();
+	patient(string ,string ,int ,string ,string,string);
+	void setAll(string ,string ,int ,string ,string,string);
+	void changeServicelevel(string);
+	string getServicelevel();
+	void print ();
+	~patient();
+};
+
+//----------------------------------------------
+//----------------sourec------------------------
+person::person(string a,string s,int d){
+	name = a;
+	gender =s;
+	age =d;
+}
+void person::SetAll(string a,string s,int d){
+	name = a;
+	gender =s;
+	age =d;
+}
+int person::getAge(){
+return age;
+}
+
+void person::print(){
+	cout << "Person name :"<<name<<'\n';
+	cout << "gender :"<<gender<<endl; 
+	cout << "age :"<<age<<endl;
+}
+person::~person(){
+	cout << "good bye person "<<endl<<endl;
+}
+//----------------------------------------------
+
+//----------------sourec2------------------------
+patient::patient():person(" "," ",0){
+	sickness =admitionDate= serviceLevel=" ";
+	}
+patient::patient(string a,string s,int d,string f,string g,string h):person(a,s,d){
+	sickness=f;
+	admitionDate=g;
+	serviceLevel=h;
+}
+void patient::setAll(string a,string s,int d,string f,string g,string h){
+	SetAll(a,s,d);
+	sickness=f;
+	admitionDate=g;
+	serviceLevel=h;
+}
+void patient::changeServicelevel(string a){
+	serviceLevel=a;
+}
+string patient::getServicelevel(){
+return serviceLevel;
+}
+void patient::print(){
+	person::print();
+	cout << "sickness :"<<sickness<<'\n';
+	cout << "service Level :"<<serviceLevel<<endl;
+	cout << "admition Date :"<<admitionDate<<endl; 
+}
+patient::~patient(){
+cout << "good bye patient"<<endl<<endl;
+}
+//----------------------------------------------
+//----------------sourec2------------------------
+
+int main (){
+	patient p1;
+	string a,s,d,f,g;
+	int h;
+	cout << "Enter patient onfo:"<<endl;
+	cout << "name :";
+	cin >> a;
+	cout << "gender :";
+	cin >>s;
+	cout << "age :";
+	cin >>h;
+	cout << "sickness :";
+	cin >>d;
+	cout << "service Level :";
+	cin >>g;
+	cout << "admition Date :";
+	cin >>f;
+	p1.setAll(a,s,h,d,f,g);
+	patient p2("ali","male",25,"s-123","class-A","22-2-2016");
+	p2.changeServicelevel("class-B");
+	cout << endl;
+	cout << "personal information of patient 1"<<endl;
+	p1.person::print();
+	cout << endl;
+	cout << "service level of patient 2 :"<<p2.getServicelevel()<<endl;
+	cout<< endl;
+	cout << "age of patient 2:"<<p2.person::getAge()<<endl;
+	cout << endl;
+	cout << "all inforamtion of patient 2:";
+	p2.print();
+	cout<< endl;
+return 0;
+}
