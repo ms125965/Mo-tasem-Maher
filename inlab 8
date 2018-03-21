@@ -1,0 +1,137 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class person {
+private :
+	string name ;
+	string ssn ;
+public :
+	person(string,string);
+    void SetInfo(string,string);
+	void Print();
+	~person();
+};
+
+class doctor :public person{
+	string speciality ;
+	string rank;
+public :
+	 doctor(string,string, string,string);
+	 void SetInfo(string,string, string,string);
+	 void Print();
+	 ~doctor();
+};
+
+class building {
+private :
+	string location;
+	double area;
+
+public :
+	building (string,double);
+	void SetInfo(string,double);
+	void Print();
+	~ building ();
+};
+
+class Hospital:public building {
+private :
+	string  hospital_name;
+	int staffnumber;
+public:
+doctor manager;
+Hospital():manager("","","",""),building("",0){
+	hospital_name="";
+	staffnumber=0;
+}
+Hospital(string a,int s,string d,string f,string g,string h,string j ,int k):manager(d,f,g,h),building(j,k){
+	hospital_name=a;
+	staffnumber=s;
+}
+void setinfo(string a,int s,string d,string f,string g,string h,string j ,int k){
+	hospital_name=a;
+	staffnumber=s;
+	manager.SetInfo(d,f,g,h);
+	building::SetInfo(j,k);
+}
+~Hospital(){
+cout << "good bye Hospital"<<endl<<endl;
+}
+void print (){
+	manager.Print();
+	cout <<"hospital name :"<<hospital_name<<endl;
+	cout << "staffnumber : "<<staffnumber<<endl;
+}
+};
+
+person::person(string a,string s){
+name = a;
+ssn =s;
+}
+void person::SetInfo(string a,string s){
+name = a;
+ssn =s;
+}
+void person::Print(){
+	cout << "name :"<<name <<endl;
+	cout <<  "ssn "<< ssn <<endl;
+}
+person::~person(){
+cout << "GOOD BYE PERSON "<<endl <<endl;
+}
+
+doctor::doctor(string a,string s, string d,string f):person(a,s){
+	speciality=d;
+	rank=f;
+}
+
+void doctor::SetInfo(string a,string s, string d,string f){
+	person::SetInfo(a,s);
+	speciality=d;
+	rank=f;
+}
+void doctor::Print(){
+	person::Print();
+	cout << "speciality :"<<speciality<<endl;
+	cout << "rank : " <<rank<<endl;
+}
+doctor:: ~doctor(){
+cout << "GOOD BYE DOCTOR "<<endl <<endl;
+}
+
+building::building(string a,double s){
+	location =a;
+	area = s;
+}
+void building::SetInfo(string a,double s){
+	location =a;
+	area = s;
+}
+void building::Print(){
+	cout << "location :"<<location<<endl;
+	cout << "area :"<<area<<endl;
+}
+building::~building (){
+cout << "GOOD BYE building"<<endl <<endl ;
+}
+
+int main (){
+	Hospital h1;
+	h1.setinfo("Irbid",250,"Ali Ahmad","9855648552","Neurosurgery","specialist","JUST-Hospital",65);
+	Hospital h2("Amman",500,"mosa ahmad","98511111","Neurosurgery","specialist","Al-RAHMA-Hospital",2000);
+	cout << "bulding information of hospital 1:"<<endl;
+	h1.building::Print();
+	cout <<endl;
+
+	cout << " personal information of hospital 1 manager :"<<endl;
+	h1.manager.person::Print();
+	cout << endl;
+	cout <<" manager information of hospital 1:"<<endl;
+	h1.manager.Print();
+	cout << endl;
+	cout << "all information of hospital 1:"<<endl;
+	h2.print();
+	cout << endl;
+return 0;
+}
