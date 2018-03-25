@@ -1,0 +1,129 @@
+#include <iostream>
+#include <string>
+ using namespace std ;
+
+ class person {
+ private :
+	 string name ;
+	 string ssn ;
+ public:
+	 person  (string ,string);
+	 void setinfo(string,string );
+	 void print ();
+	 ~person ();
+ };
+
+  class building {
+ private :
+	 string name ;
+	 string location ;
+ public:
+	 building  (string ,string);
+	 void setinfo(string,string );
+	 void print ();
+	 ~building ();
+	 
+ };
+
+  class pharmacy:public building{
+  private :
+	  double income ;
+  protected:
+	  string empNames[10];
+	  int empNumber;
+  public:
+   person owner;
+   pharmacy();
+   pharmacy(string,string,string,string,double);
+   void newEmp(string);
+   void setinfo(string,string,string,string,double);
+   void print();
+   ~pharmacy();
+  };
+  person::person(string a,string s){
+  name =a;
+  ssn = s;
+  }
+  void  person::setinfo(string a,string s){
+  name =a;
+  ssn = s;
+  }
+  void person::print (){
+  cout << "name :"<< name <<endl;
+  cout << "ssn : "<< ssn <<endl;
+  }
+  person::~person(){
+  cout << "good bye person "<<endl<<endl;
+  }
+
+
+   building::building(string a,string s){
+  name =a;
+  location = s;
+  }
+  void  building::setinfo(string a,string s){
+  name =a;
+  location = s;
+  }
+  void building::print (){
+  cout << "name :"<< name <<endl;
+  cout << "location : "<< location <<endl;
+  }
+  building::~building(){
+  cout << "good bye building "<<endl<<endl;
+  }
+   pharmacy::pharmacy():building("",""),owner("",""){
+	   income = 0.0;
+	   empNumber =0 ;
+  }
+  pharmacy::pharmacy(string a,string s,string d,string f,double h):building(a,s),owner(d,f){
+	   income = h;
+	   empNumber =0;
+  }
+  void pharmacy::setinfo(string a,string s,string d,string f,double h){
+	   income = h;
+	   building::setinfo(a,s);
+	   owner.setinfo(d,f);
+  }
+  void pharmacy::newEmp(string a){
+	  if (empNumber <= 10){
+		  empNames[empNumber]=a;
+		  empNumber++;
+	  }
+	  else 
+		  cout << "is full"<<endl;
+  }
+  void pharmacy::print(){
+	  building::print();
+	  owner.print();
+	  cout << "income :"<<income<<endl;
+	  cout << "number of employee : 3"<<endl;
+	  cout << "employee names :" <<endl;
+	  for (int q =0 ;q < empNumber;q++){
+	  cout << empNames[q]<<endl;
+	  }
+  }
+  pharmacy::~pharmacy(){
+  cout << "good bye pharmacy "<< endl <<endl ;
+  }
+  int main(){
+  pharmacy p1;
+  p1.setinfo( "Pharmacy-XYZ","Irbid","Ali Ahmad","9855648552",2500);
+  pharmacy p2("Pharamcy -ABC","Amman","mosa ahmad","98511111",2000);
+  string name ;
+  cout << "enter 3 emp names :"<<endl;
+  for (int q =0 ; q< 3 ;q++){
+  cin >>name ;
+  p2.newEmp(name);
+  }
+  cout << endl;
+  cout << "building information of pharmacy 1 :"<<endl;
+  p1.building::print();
+  cout << endl;
+  cout << "owner information of pharmacy 1:"<<endl;
+  p1.owner.print();
+  cout << endl;
+  cout << "all information of pharmacy 2:"<<endl;
+  p2.print();
+  cout << endl;
+  }
