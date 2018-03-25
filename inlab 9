@@ -1,0 +1,77 @@
+#include <iostream> 
+#include <string>
+using namespace std ;
+
+
+class doctor {
+private :
+	string name ;
+	string speciality;
+	int  numOfpatient;
+public :
+	string patients[10];
+	doctor(string ,string ,int );
+	void addPatient (string);
+	string getDoctorState();
+	void print ();
+	~doctor ();
+};
+
+doctor::doctor(string a,string s,int d){
+	name =a ;
+    speciality =s ;
+	numOfpatient =d ;
+}
+
+string doctor::getDoctorState(){
+	if (numOfpatient > 7 ){
+	return "Busy";
+	}
+	else 
+		return "not Busy";
+}
+
+void doctor::addPatient (string a){
+	if (numOfpatient <= 10){
+	patients[numOfpatient]=a;
+	numOfpatient++;
+	}
+	else 
+		cout << "is full "<<endl ;
+}
+
+void doctor::print(){
+cout << "doctor name :"<< name <<endl;
+cout << "speciality :"<<speciality<<endl;
+cout << "number of patient: 3"<<endl;
+cout << "patient name :"<<endl;
+for (int q =0 ;q<numOfpatient;q++){
+cout << patients[q]<<endl;
+}
+}
+
+doctor::~doctor(){
+	cout << "good bye doctor"<<endl;
+}
+
+int main (){
+	doctor d1("ali","General Surguery",0);
+	doctor *dpt1=&d1;
+	cout << "enter the name of three paitents"<<endl;
+	string name;
+	for (int q =0 ;q<3;q++){
+	cin >> name ;
+	dpt1->addPatient(name);
+	}
+	cout << endl;
+	cout << "doctor 1 state is :"<<d1.getDoctorState();
+	cout << endl;
+	d1.print();
+	cout << endl;
+	doctor *dPt2 = new doctor("Ahmad"," Neurosurgery ", 9);
+	cout << "doctor 2 state is :"<<dPt2->getDoctorState()<<endl;
+	cout << endl;
+	delete dPt2;
+	dPt2 =NULL;
+return 0;
+}
