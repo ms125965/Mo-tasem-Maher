@@ -1,0 +1,149 @@
+#include <iostream>
+#include <string> 
+using namespace std; 
+
+struct medicine {
+string name ;
+int amount ,epirtyaer ;
+double price;
+}; 
+
+class pharmacy {
+private:
+	string name;
+	int numofmed,capacity;
+	medicine *medlist;
+public :
+	pharmacy (int a=50);
+	pharmacy(pharmacy &);
+	~pharmacy();
+	void setname(string);
+	bool isEmpty();
+	bool isFull ();
+	int getlength;
+	void print ();
+	void insert(string ,int ,int ,double);
+	pharmacy extractExpired();
+	double sum ();
+};
+
+pharmacy::pharmacy(int a ){
+name = "";
+numofmed =0 ;
+capacity =a;
+ medlist = new medicine [capacity];
+}
+
+pharmacy::pharmacy(pharmacy &a){
+	 medlist = new medicine [a.capacity];
+name = a.name;
+capacity=a.capacity;
+numofmed=a.numofmed;
+for (int q =0 ;q<a.capacity;q++){
+	medlist[q]=a.medlist[q];
+}
+cout << "copy constructor"<<endl<<endl;
+}
+
+void pharmacy::setname(string a){
+name = a;
+}
+bool pharmacy::isEmpty(){
+return ((numofmed==0));
+}
+
+bool pharmacy::isFull(){
+	return ((numofmed==capacity));
+}
+void pharmacy::insert(string a,int s,int d,double f){
+	if (!isFull()){
+medlist[numofmed].name=s;
+medlist[numofmed].amount=s;
+medlist[numofmed].epirtyaer=d;
+medlist[numofmed].price=f;
+numofmed++;
+	}
+	else 
+		cout << "is full"<<endl;
+}
+
+pharmacy pharmacy::extractExpired(){
+	pharmacy a;int s =0;
+	if(!isEmpty()){
+		
+		for (int q =0 ;q < numofmed;q++){
+			if (medlist[q].epirtyaer<2018){
+				a.medlist[s]=medlist[q];
+				s++;
+			}
+			
+		}
+	}
+	else 
+		cout << "is empty"<<endl;
+
+	a.numofmed = s;
+	return a;
+}
+void pharmacy::print(){
+	if (!isEmpty()){
+	for (int q =0 ;q < numofmed ;q++){
+		cout << "medicine name :"<<	medlist[q].name<<"   "
+			<< "amount :"<<medlist[q].amount <<"    "
+			<< "expiry yaer :"<<medlist[q].epirtyaer<<"   "
+			<< "price :"<<medlist[q].price<<endl;
+	}
+	}
+	else 
+		cout << "is empty"<<endl;
+}
+double pharmacy::sum(){
+	double sum =0 ;
+	if (!isEmpty()){
+		for (int q =0 ;q < numofmed;q++){
+			sum += medlist[q].price;
+		}
+	}
+	else 
+		cout << "is empty "<<endl;
+	return sum ;
+}
+
+pharmacy::~pharmacy(){
+cout << "good bye "<<endl;
+delete []medlist;
+
+}
+int main (){
+	string a,z;
+	int s,d;
+	double f;
+	 pharmacy p1;
+	cout << "enter pharmacy capcity : 250"<<endl;
+	cout << "Enter the pharmacy name :";
+	cin >> a;
+	p1.setname(a);
+	cout << "enter the 4 medicine info:"<<endl;
+	for (int q =0 ;q < 4 ;q++){
+	cout << "name of medicine :";
+	cin >> z;
+	cout << "amount of msdicine :";
+	cin >> s;
+   cout << "expiry of madicine :";
+   cin >> d;
+   cout << "price of medicine :";
+   cin >> f;
+   p1.insert(z,s,d,f);
+   cout << endl;
+	}
+  pharmacy p2(p1);
+  pharmacy p3(p2.extractExpired());
+  p3.print();
+  cout << endl;
+  cout << "medicine in the pharmacy p2:"<<endl;
+  p2.print();
+  cout << endl;
+  cout << "sum of price of p2 : "<<p2.sum()<<endl;
+
+return 0;
+}
