@@ -1,0 +1,84 @@
+// Example program
+#include <iostream>
+#include <string>
+using namespace std;
+
+class person {
+    private:
+    string name ,ssn;
+    public:
+    person (string a= "" , string s = "");
+    virtual void printinfo ();
+    virtual ~person();
+    
+    }; 
+    person::person(string a,string s){
+        name = a;
+        ssn =s ;
+        }
+   void person::printinfo(){
+       cout << "person info "<<endl;
+       cout << "name :"<< name << "    " << "SSN :"<<endl;
+        }
+        preson::~prerson(){
+            cout << "person destructor"<<endl;
+            }
+class teacther :public person {
+    private :
+    string univ ;
+    int hireyaer ;
+    public :
+    teacther(string ,string ,string ,int);
+    void printinfo();
+    ~teacther();
+    };        
+    
+    teacther::teacther(string a, string s, string d ,int f):person (a,s){
+        univ = d;
+        hireyaer = f ;
+        }
+    void teacther::printinfo(){
+        person::printinfo();
+        cout << "teacter info" << endl;
+        cout << "univ name :" << univ << "   "<< "hire yaer :"<<hireyaer<<endl;
+        }
+    teacther::~teacther(){
+        cout << "teacther destructor "<<endl;
+        }
+class student: public person {
+public:
+  student (string, string, string,float);
+  void printInfo ();
+  ~student ();
+private:
+  string ID;
+  float GPA;
+};  
+student::student(string a,string s,string d,float f):person(a,s){
+    ID = a;
+    GPA = s;
+    }
+void student::printinfo(){
+    person::print();
+    cout << "student info "<<endl;
+    cout << "IDame :"<<ID<<"    "<< "GPA :"<< endl;
+    }
+    student::~student(){
+        cout << "student dest"<<endl;
+        }
+void print (person & a){
+        a.printinfo();    
+            }
+int main()
+{
+student s[0]("ali Ahmad","123456","201800001",88.5);
+student s[1]("anas mohammad","123123","201800002",99.5);
+teacther h("abdullah ali" , "666666","just univ",2017);
+print(s[0]);
+cout <<endl;
+print (s[1]);
+cout << endl; 
+print (h);
+cout << endl;
+
+}
